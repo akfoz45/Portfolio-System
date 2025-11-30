@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Benim Portfolyom</title>
+    <style>
+        .project-card { border: 1px solid #ddd; padding: 15px; margin: 20px; border-radius: 8px; max-width: 600px; }
+        img { max-width: 100%; height: auto; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h1>Projelerim</h1>
+
+    {% for project in projects %}
+        <div class="project-card">
+            <h2>{{ project.title }}</h2>
+            
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+            
+            <p>{{ project.description }}</p>
+            
+            {% if project.url %}
+                <a href="{{ project.url }}" target="_blank">Projeyi İncele</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+</body>
+</html>

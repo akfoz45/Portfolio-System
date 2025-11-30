@@ -1,0 +1,21 @@
+# Python derleme dosyaları (Gereksiz)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Sanal Ortam (Çok büyük, yüklemeye gerek yok)
+venv/
+env/
+
+# Django Veritabanı (Yerel veritabanını gönderme)
+db.sqlite3
+
+# Kullanıcı Medyaları (Yüklenen resimler vs.)
+media/
+
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
+
+# Çevresel değişkenler (Gizli anahtarlar burada tutulur)
+.env
