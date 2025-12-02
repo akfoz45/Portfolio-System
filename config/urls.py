@@ -26,6 +26,10 @@ urlpatterns = [
     path('project/<int:project_id>/', views.detail, name='detail'),
     #path('about/', views.about, name='about'),
     #path('contact/', views.contact, name='contact'),
+    path('profile/edit/', views.edit_profile, name='edit_profile'),
+    path('project/add/', views.add_project, name='add_project'),
+    path('project/edit/<int:project_id>/', views.edit_project, name='edit_project'),
+    path('project/delete/<int:project_id>/', views.delete_project, name='delete_project'),
 ]
 
 if settings.DEBUG:

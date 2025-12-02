@@ -220,3 +220,54 @@ button[type=submit]:hover {
     text-align: center;
     border: 1px solid #bfdbfe;
 }
+
+.btn-admin-base {
+    padding: 12px 24px; 
+    border-radius: 50px; 
+    font-weight: 600;
+    font-size: 1.0rem; 
+    text-decoration: none !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    border: none; 
+}
+.btn-admin-base:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.btn-admin-edit {
+    background: white;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+}
+.btn-admin-edit:hover {
+    background: #f1f5f9;
+}
+
+.btn-admin-add {
+    background: #2563eb; 
+    color: white;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4); 
+}
+.btn-admin-add:hover {
+    background: #1d4ed8;
+}
+
+.btn-admin-delete {
+    background: #ef4444; 
+    color: white;
+    border-radius: 5px; 
+}
+.btn-admin-delete:hover {
+    background: #b91c1c;
+}
+
+.profile-alert-bg {
+    background: #eef2ff; 
+    color: #1e40af;
+    padding: 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}

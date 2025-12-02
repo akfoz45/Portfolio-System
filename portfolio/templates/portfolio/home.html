@@ -2,24 +2,70 @@
 
 {% block content %}
 
-<header id="header">
-  <h1>Akif Özdemir</h1>
-  <p>Web Geliştirici · Modern Arayüz Tasarımcısı</p>
+<header id="header" style="position: relative;">
+  
+  {% if user.is_authenticated and profile %}
+    <a href="{% url 'edit_profile' %}" class="btn-admin-base btn-admin-edit"
+       style="position: absolute; top: 20px; right: 20px; z-index: 999;">
+       ✏️ Bilgileri Düzenle
+    </a>
+  {% endif %}
+
+  {% if profile.avatar %}
+      <img src="{{ profile.avatar.url }}" alt="Avatar" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem; border: 4px solid rgba(255,255,255,0.3);">
+  {% else %}
+      <img src="https://static.thenounproject.com/png/4507018-200.png" alt="Varsayılan Avatar" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 1rem; background: white; padding: 10px;">
+  {% endif %}
+
+  <h1>{{ profile.full_name|default:"Adınız Soyadınız" }}</h1>
+  <p>{{ profile.subtitle|default:"Web Geliştirici" }}</p>
+
+  {% if user.is_authenticated and not profile %}
+    <div style="margin-top: 20px;">
+        <p class="profile-alert-bg" style="display:inline-block;">⚠️ Profil bilgisi yok</p><br>
+        <a href="{% url 'edit_profile' %}" class="btn-admin-base btn-admin-add" style="margin-top: 10px;">
+            ➕ Profil Oluştur
+        </a>
+    </div>
+  {% endif %}
 </header>
 
 <section id="about">
-  <h2>Hakkımda</h2>
+  <h2>{{ profile.about_title|default:"Hakkımda" }}</h2>
   <p>
-    Merhaba! Ben Akif, modern web arayüzleri geliştiren bir front‑end geliştiricisiyim. Kullanıcı deneyimi, hızlı performans ve temiz kod benim için önceliklidir.
+    {{ profile.about_text|default:"Henüz bir tanıtım yazısı girmediniz. Yukarıdaki 'Düzenle' butonunu kullanarak ekleyebilirsiniz." }}
   </p>
 </section>
 
+
 <section id="portfolio">
-  <h2 style="text-align:center; color:#b45309; margin-bottom: 2rem;">Projelerim</h2>
+  <h2 style="text-align:center; color:#1e40af; margin-bottom: 3rem;">Projelerim</h2>
   
+  {% if user.is_authenticated %}
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <a href="{% url 'add_project' %}" class="btn-admin-base btn-admin-add">
+            <i class="fas fa-plus"></i> Yeni Proje Ekle
+        </a>
+    </div>
+  {% endif %}
+
   <div class="portfolio-grid">
     {% for project in projects %}
-    <div class="item">
+    <div class="item" style="position: relative;">
+      
+      {% if user.is_authenticated %}
+          <a href="{% url 'edit_project' project.id %}" 
+             class="btn-admin-base"
+             style="position: absolute; top: 10px; right: 45px; background: rgba(255,255,255,0.9); color: #333; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; z-index: 10;">
+             ✏️
+          </a>
+          <a href="{% url 'delete_project' project.id %}" 
+             class="btn-admin-delete"
+             style="position: absolute; top: 10px; right: 10px; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; z-index: 10;">
+             🗑️
+          </a>
+      {% endif %}
+
       {% if project.image %}
          <img src="{{ project.image.url }}" alt="{{ project.title }}">
       {% else %}
@@ -30,11 +76,11 @@
         <h3>{{ project.title }}</h3>
         <p>{{ project.description|truncatechars:100 }}</p>
         
-        <a href="{% url 'detail' project.id %}" style="color:#4f46e5; text-decoration:none; font-weight:600; font-size:0.9rem;">İncele &rarr;</a>
+        <a href="{% url 'detail' project.id %}" style="color:#2563eb; text-decoration:none; font-weight:600; font-size:0.9rem;">İncele &rarr;</a>
       </div>
     </div>
     {% empty %}
-      <p style="text-align:center; width:100%; color: #b45309;">Henüz proje eklenmemiş.</p>
+      <p style="text-align:center; width:100%; color: #475569;">Henüz proje eklenmemiş. Lütfen yukarıdaki butonla bir proje ekleyin.</p>
     {% endfor %}
   </div>
 
