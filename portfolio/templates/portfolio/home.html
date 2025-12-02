@@ -2,35 +2,67 @@
 
 {% block content %}
 
-<div class="row text-center mb-5">
-    <div class="col">
-        <h1 class="display-4">Hoş Geldiniz!</h1>
-        <p class="lead">Python ve Django ile geliştirdiğim projelerim.</p>
-        <hr>
-    </div>
-</div>
+<header id="header">
+  <h1>Akif Özdemir</h1>
+  <p>Web Geliştirici · Modern Arayüz Tasarımcısı</p>
+</header>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<section id="about">
+  <h2>Hakkımda</h2>
+  <p>
+    Merhaba! Ben Akif, modern web arayüzleri geliştiren bir front‑end geliştiricisiyim. Kullanıcı deneyimi, hızlı performans ve temiz kod benim için önceliklidir.
+  </p>
+</section>
+
+<section id="portfolio">
+  <h2 style="text-align:center; color:#b45309; margin-bottom: 2rem;">Projelerim</h2>
+  
+  <div class="portfolio-grid">
     {% for project in projects %}
-    <div class="col">
-        <div class="card h-100 shadow-sm">
-            {% if project.image %}
-                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px; object-fit: cover;">
-            {% endif %}
-            
-            <div class="card-body">
-                <h5 class="card-title">{{ project.title }}</h5>
-                <p class="card-text">{{ project.description|truncatechars:100 }}</p>
-                
-                <a href="{% url 'detail' project.id %}" class="btn btn-primary btn-sm">İncele</a>
-
-                {% if project.url %}
-                    <a href="{{ project.url }}" class="btn btn-outline-dark btn-sm" target="_blank">Kaynak Kod / Demo</a>
-                {% endif %}
-            </div>
-        </div>
+    <div class="item">
+      {% if project.image %}
+         <img src="{{ project.image.url }}" alt="{{ project.title }}">
+      {% else %}
+         <img src="https://picsum.photos/600/400" alt="Placeholder">
+      {% endif %}
+      
+      <div class="content">
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description|truncatechars:100 }}</p>
+        
+        <a href="{% url 'detail' project.id %}" style="color:#4f46e5; text-decoration:none; font-weight:600; font-size:0.9rem;">İncele &rarr;</a>
+      </div>
     </div>
+    {% empty %}
+      <p style="text-align:center; width:100%; color: #b45309;">Henüz proje eklenmemiş.</p>
     {% endfor %}
-</div>
+  </div>
+
+</section>
+
+<section id="contact">
+  <h2>İletişim</h2>
+  
+  {% if success %}
+    <div class="success-msg">
+        Mesajınız başarıyla gönderildi! En kısa sürede dönüş yapacağım.
+    </div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    
+    <label>Adınız</label><br>
+    <input type="text" name="name" required><br>
+
+    <label>Email</label><br>
+    <input type="email" name="email" required><br>
+
+    <label>Mesajınız</label><br>
+    <textarea name="message" rows="5" required></textarea><br>
+
+    <button type="submit">Gönder</button>
+  </form>
+</section>
 
 {% endblock %}

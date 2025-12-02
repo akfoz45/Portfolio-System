@@ -1,0 +1,222 @@
+/* portfolio/static/portfolio/css/styles.css */
+
+/* Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/* --- YENİ EKLENEN KISIM (YUMUŞAK GEÇİŞ) --- */
+html {
+  scroll-behavior: smooth; /* Yumuşak kaydırma */
+  scroll-padding-top: 130px; /* Navbar yüksekliği kadar pay bırak (Başlıklar gizlenmesin) */
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #f8fafc;
+  color: #334155;
+}
+
+/* NAVBAR (BÜYÜK BOYUT) */
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2rem 3rem; 
+  background: #0f172a;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: sticky; /* Sayfa kayınca üstte yapışık kalır */
+  top: 0;
+  z-index: 100;
+  transition: padding 0.3s;
+}
+
+nav a {
+  margin-left: 2rem;
+  text-decoration: none;
+  color: #e2e8f0;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: 0.3s;
+}
+nav a:hover {
+  color: #38bdf8;
+}
+
+header {
+  text-align: center;
+  padding: 6rem 1rem;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: white;
+  margin-bottom: 2rem;
+}
+
+h1 { 
+    font-size: 3.5rem; 
+    margin: 0.5rem 0; 
+    font-weight: 800;
+    letter-spacing: -1.5px;
+}
+p { opacity: .9; font-size: 1.25rem; font-weight: 300; }
+
+#about {
+  max-width: 900px;
+  margin: 5rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+#about h2 {
+    color: #1e40af;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+#about p {
+    font-size: 1.35rem;
+    line-height: 1.7;
+    color: #475569;
+}
+
+#portfolio {
+  background: #eef2ff; 
+  padding: 5rem 2rem;
+  width: 100%;
+  margin: 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+#portfolio h2 {
+    color: #1e40af !important;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.portfolio-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.item {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  width: 350px;
+  border: 1px solid #e2e8f0;
+}
+
+.item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+}
+
+.item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.item:hover img {
+    transform: scale(1.03);
+}
+
+.item .content {
+  padding: 1.5rem;
+}
+.item .content h3 {
+    margin-top: 0;
+    color: #1e293b;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.item .content p {
+    color: #64748b;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+.item .content a {
+    color: #2563eb;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+#contact {
+  max-width: 800px;
+  margin: 5rem auto;
+  padding: 2.5rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+}
+#contact h2 { 
+    color: #1e40af; 
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+footer {
+  text-align: center;
+  padding: 3rem;
+  background: #0f172a;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* Form Stilleri */
+input[type=text], input[type=email], textarea {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    box-sizing: border-box;
+    font-family: inherit;
+    background-color: #f8fafc;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+button[type=submit] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 1.5rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+button[type=submit]:hover {
+    background: #1d4ed8;
+}
+
+.success-msg {
+    background-color: #eff6ff;
+    color: #1e40af;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border: 1px solid #bfdbfe;
+}
