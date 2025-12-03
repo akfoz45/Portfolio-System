@@ -11,11 +11,11 @@ class Project(models.Model):
 
 
 class Profile(models.Model):
-    full_name = models.CharField(max_length=100, default="Adınız Soyadınız", verbose_name="Ad Soyad")
-    subtitle = models.CharField(max_length=200, default="Web Geliştirici", verbose_name="Alt Başlık (Ünvan)")
+    full_name = models.CharField(max_length=100, default="", verbose_name="Ad Soyad")
+    subtitle = models.CharField(max_length=200, default="", verbose_name="Alt Başlık (Ünvan)")
     avatar = models.ImageField(upload_to='portfolio/avatar/', blank=True, null=True, verbose_name="Profil Fotoğrafı")
-    about_title = models.CharField(max_length=100, default="Hakkımda", verbose_name="Hakkımda Başlığı")
-    about_text = models.TextField(default="Buraya kendinizi tanıtan yazıyı girin...", verbose_name="Hakkımda Yazısı" )
+    about_title = models.CharField(max_length=100, default="", verbose_name="Hakkımda Başlığı")
+    about_text = models.TextField(default="", verbose_name="Hakkımda Yazısı" )
 
     def __str__(self):
         return "Kişisel Bilgiler (Profile)"

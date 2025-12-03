@@ -1,27 +1,41 @@
 {% extends 'portfolio/base.html' %}
 
 {% block content %}
-<div class="container mt-5 mb-5" style="max-width: 700px;">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">{{ title }}</h3>
+<div class="edit-container">
+    <div class="card form-card">
+        <div class="form-card-header">
+            <h3 class="mb-0">
+                {% if 'Profil' in title %}👤{% else %}✏️{% endif %} 
+                {{ title }}
+            </h3>
         </div>
         <div class="card-body">
-            <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+            <form method="post" enctype="multipart/form-data"> 
+                {% csrf_token %}
                 
                 {% for field in form %}
-                <div class="mb-3">
-                    <label class="form-label fw-bold">{{ field.label }}</label>
-                    {{ field }}
+                <div class="mb-4 form-group">
+                    <label class="form-label">{{ field.label }}</label>
+                    {{ field }} 
                     {% if field.help_text %}
                         <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% if field.errors %}
+                        <div class="text-danger small mt-1">
+                            {{ field.errors.0 }}
+                        </div>
                     {% endif %}
                 </div>
                 {% endfor %}
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="{% url 'home' %}" class="btn btn-secondary me-md-2">İptal</a>
-                    <button type="submit" class="btn btn-success">💾 Değişiklikleri Kaydet</button>
+                <div class="form-actions">
+                    <a href="{% url 'home' %}" class="btn-custom btn-cancel">
+                        <i class="fas fa-arrow-left"></i> Vazgeç
+                    </a>
+                    
+                    <button type="submit" class="btn-custom btn-save">
+                        <i class="fas fa-check-circle"></i> Değişiklikleri Kaydet
+                    </button>
                 </div>
             </form>
         </div>

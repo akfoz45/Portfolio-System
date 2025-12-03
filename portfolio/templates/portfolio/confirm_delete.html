@@ -1,14 +1,40 @@
 {% extends 'portfolio/base.html' %}
+
 {% block content %}
-<div class="container mt-5 text-center">
-    <div class="alert alert-danger shadow">
-        <h3>⚠️ Emin misin?</h3>
-        <p>"{{ project.title }}" projesini silmek üzeresin. Bu işlem geri alınamaz.</p>
-        <form method="post">
-            {% csrf_token %}
-            <a href="{% url 'home' %}" class="btn btn-secondary">İptal</a>
-            <button type="submit" class="btn btn-danger">Evet, Sil</button>
-        </form>
+<div class="edit-container">
+    <div class="card form-card" style="max-width: 500px;">
+        
+        <div class="form-card-header header-danger">
+            <h3 class="mb-0">⚠️ Silme İşlemi</h3>
+        </div>
+
+        <div class="card-body text-center">
+            
+            <div style="margin: 20px 0;">
+                <i class="fas fa-trash-alt fa-4x" style="color: #ef4444;"></i>
+            </div>
+
+            <h4 style="margin-bottom: 1rem; color: #1e293b;">Emin misiniz?</h4>
+            
+            <p style="color: #64748b; font-size: 1.1rem; line-height: 1.6;">
+                <strong>"{{ project.title }}"</strong> projesini silmek üzeresiniz.<br>
+                Bu işlem geri alınamaz.
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="form-actions">
+                    <a href="{% url 'home' %}" class="btn-custom btn-cancel">
+                        <i class="fas fa-times"></i> Vazgeç
+                    </a>
+                    
+                    <button type="submit" class="btn-custom btn-delete-confirm">
+                        <i class="fas fa-trash"></i> Evet, Sil
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

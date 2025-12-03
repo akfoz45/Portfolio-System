@@ -11,10 +11,10 @@
 <body>
 
 <nav>
-  <a href="#header">Ana Sayfa</a>
-  <a href="#about">Hakkımda</a>
-  <a href="#portfolio">Projeler</a>
-  <a href="#contact">İletişim</a>
+  <a href="{% url 'home' %}#header">Ana Sayfa</a>
+  <a href="{% url 'home' %}#about">Hakkımda</a>
+  <a href="{% url 'home' %}#portfolio">Projeler</a>
+  <a href="{% url 'home' %}#contact">İletişim</a>
 </nav>
 
 {% block content %}
