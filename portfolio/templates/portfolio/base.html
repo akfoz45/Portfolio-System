@@ -11,10 +11,16 @@
 <body>
 
 <nav>
-  <a href="{% url 'home' %}#header">Ana Sayfa</a>
-  <a href="{% url 'home' %}#about">Hakkımda</a>
-  <a href="{% url 'home' %}#portfolio">Projeler</a>
-  <a href="{% url 'home' %}#contact">İletişim</a>
+  <a href="{% url 'home' %}" class="nav-brand">
+      {{ profile.full_name|default:"Akif Özdemir" }}
+  </a>
+
+  <div class="nav-links">
+      <a href="{% url 'home' %}#header">Ana Sayfa</a>
+      <a href="{% url 'home' %}#about">Hakkımda</a>
+      <a href="{% url 'home' %}#portfolio">Projeler</a>
+      <a href="{% url 'home' %}#contact">İletişim</a>
+  </div>
 </nav>
 
 {% block content %}
@@ -23,6 +29,8 @@
 <footer>
   © 2025 Akif Özdemir · Portfolio
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
